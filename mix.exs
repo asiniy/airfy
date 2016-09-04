@@ -7,6 +7,7 @@ defmodule Airfy.Mixfile do
      elixir: "~> 1.3",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
+     escript: [main_module: Airfy],
      deps: deps()]
   end
 
@@ -14,7 +15,10 @@ defmodule Airfy.Mixfile do
   #
   # Type "mix help compile.app" for more information
   def application do
-    [applications: [:logger]]
+    [
+      applications: [:logger],
+      included_applications: [:siphash]
+    ]
   end
 
   # Dependencies can be Hex packages:
@@ -27,6 +31,8 @@ defmodule Airfy.Mixfile do
   #
   # Type "mix help deps" for more examples and options
   defp deps do
-    []
+    [
+      { :siphash, "~> 3.1" }
+    ]
   end
 end
